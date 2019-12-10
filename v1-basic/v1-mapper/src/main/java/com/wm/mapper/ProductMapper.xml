@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wm.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.wm.entity.Product">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="sale_price" jdbcType="BIGINT" property="salePrice" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="sale_point" jdbcType="VARCHAR" property="salePoint" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="tape_id" jdbcType="INTEGER" property="tapeId" />
+    <result column="tape_name" jdbcType="VARCHAR" property="tapeName" />
+  </resultMap>
+    <resultMap id="SearchResultMap" type="com.wm.vo.ProductSearchVO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="price" jdbcType="BIGINT" property="price" />
+        <result column="sale_price" jdbcType="BIGINT" property="salePrice" />
+        <result column="images" jdbcType="VARCHAR" property="images" />
+        <result column="sale_point" jdbcType="VARCHAR" property="salePoint" />
+    </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, `name`, price, sale_price, images, sale_point, flag, create_time, update_time, 
+    tape_id, tape_name
+  </sql>
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_product
+    where flag=1
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    update t_product set flag=0 where id=#{id}
+  </update>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.wm.entity.Product" useGeneratedKeys="true">
+    insert into t_product (`name`, price, sale_price, 
+      images, sale_point, flag, 
+      create_time, update_time, tape_id, 
+      tape_name)
+    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{salePrice,jdbcType=BIGINT}, 
+      #{images,jdbcType=VARCHAR}, #{salePoint,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{tapeId,jdbcType=INTEGER}, 
+      #{tapeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.wm.entity.Product" useGeneratedKeys="true">
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="salePoint != null">
+        sale_point,
+      </if>
+        flag,
+        create_time,
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="tapeId != null">
+        tape_id,
+      </if>
+      <if test="tapeName != null">
+        tape_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=BIGINT},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="salePoint != null">
+        #{salePoint,jdbcType=VARCHAR},
+      </if>
+      1,
+      now(),
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tapeId != null">
+        #{tapeId,jdbcType=INTEGER},
+      </if>
+      <if test="tapeName != null">
+        #{tapeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.entity.Product">
+    update t_product
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=BIGINT},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="salePoint != null">
+        sale_point = #{salePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+        update_time = now(),
+      <if test="tapeId != null">
+        tape_id = #{tapeId,jdbcType=INTEGER},
+      </if>
+      <if test="tapeName != null">
+        tape_name = #{tapeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.entity.Product">
+    update t_product
+    set `name` = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      sale_price = #{salePrice,jdbcType=BIGINT},
+      images = #{images,jdbcType=VARCHAR},
+      sale_point = #{salePoint,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tape_id = #{tapeId,jdbcType=INTEGER},
+      tape_name = #{tapeName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="delByIds" parameterType="java.util.List">
+    update t_product set flag=0 where id in
+    <foreach collection="list" open="(" close=")" item="id" separator=",">
+      #{id}
+    </foreach>
+  </update>
+    <select id="getSearchList" resultMap="SearchResultMap">
+      select * from t_product where flag=1
+    </select>
+  <insert id="batchAddCart" parameterType="java.util.List">
+    INSERT INTO t_cart(user_id,product_id,update_time,count)
+    VALUES
+    <foreach collection ="list" item="cart" index= "index" separator =",">
+      (
+        #{cart.userId},#{cart.productId},#{cart.updateTime},#{cart.count}
+      )
+    </foreach>
+
+  ON DUPLICATE KEY UPDATE
+  count = VALUES(count),update_time = values(update_time);
+  </insert>
+</mapper>

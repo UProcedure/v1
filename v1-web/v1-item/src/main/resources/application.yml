@@ -1,0 +1,21 @@
+server:
+  port: 9093
+
+dubbo:
+  application:
+    name: web-item
+  registry:
+    protocol: zookeeper
+    address: 123.207.253.16:2181
+spring:
+  rabbitmq:
+    host: 123.207.253.16
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /java
+#    publisher-confirms: true
+#    publisher-returns: true
+#    listener:
+#      simple:
+#        acknowledge-mode: manual

@@ -1,0 +1,32 @@
+server:
+  port: 9098
+
+dubbo:
+  application:
+    name: web-order
+    qos-port: 44444
+  registry:
+    protocol: zookeeper
+    address: 123.207.253.16:2181
+
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+  rabbitmq:
+    host: 123.207.253.16
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /java
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+
+pay:
+  Alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqsEoCnpTZnffjAVlrxxBthJMLpbSneqyECXATHPGN9HZMnyphoOuXwiTrL7YlXaWMAl5uDGULXywDX1X3FFFR/vFV0C2eVumFbQm6lYAU09znkWPLr21pEiAbGNTeNdYpR5DfEgz7V7vvazk2iJEx7pZdqz7ZjUvtlNPBlQafqYFJZ0iw/ROuxgtvqWpRrT1dwshWjR/0pw7vYjv1LwbIdeWJAHkNPrRVNSIIH54ttXk0IlSuTNkE5usBp5wfr1eofs+BJshipuM6WjYFMUi6VXo79BNU9wV/xj5M5e1GTbUHYMQbSqbv4ov9kvQBM5wmtEyQ+a52gqBioh55St6GwIDAQAB
+  Merchant_private_key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBaV1EweDQIuBBVSjMEDmAtvQ1LhR5oHZpAZngeaX0mi638Fx5YWQpD4JQA8RlAMwdf1T1yPEu3YdJEd8tCVYCWCR+0xYqx4NqljItB9UzXHd5hHh5/zFAp2f7BMa9krPrVlCE5armhG3u00jOT3zbOIFzbyJfiTLUrrtE4/bciWTHC1/+uZK+MQ97o58XRQqmNgZKYZjXcoejdXb/B18y8qsUwH9lK/+XAVrFdjJJ97i0a1A0YKtTR/L/AvK0Anv2fOAPJXgvAYYPbvKIv+d2KF2iXCku/yref3NxoSQz8+S9hZVniKrIPq1LNPB353Ra0zrelvk6EOke7bDpQEmvAgMBAAECggEAeu9Nw9BtsStAX6/3VosfJRAnwxEoMDZn5e64b88AAPIq6V9zaXdEP+FUyJAblFuCi473dZlSzFNzfc11dgIFa6qx2KzLxQ3M4IcX2UE0nlr7wDtAe5wZ/LJLC+GIrnPbaPeQ+/51MBCjohmicyJ9mH8AMlljjN/3oqTuj04Dp5Gbze8RHzXOf79gxrrJrvm33gcxINK9KFAa2uJ9yzP3AUQGrOhMTbAfCqCZKFxrrz3WIUQOSSlTBLTDNVh4SYwqScAO3nccYqUik4f2m3pl0ygaHIZbG+q+4BvOaGs99z5CCr1I/N/mqsnvWr2qyxTOOO+Q2Sb98+QIKmo7IOK62QKBgQDS8a09zjRduJBAjdxuA1LDfDrymgkr3esd1uyBAAfd92t2ISiqH3DF7v9jf9ii/+FbIQoMxZwCO/ccgHImbojaPXJFlLEXC+8jt4x81hqplZlFEu4gls7SB25vzRCQNM23VfED7D3F4i7m9YKC9xitzIleaYSMmKw5Kl80qb7EHQKBgQCdDYeegZBUzBGuIqGaMp7DoG0jgOTElJUr2hc+x46gM/yUZBr768emDayHJXxzJwfQ167y7FZq2hbUlgN0OKkKHTuRAZuEmH3YjlulzmfNolQVbbBk8teiyE9SMGgbOcGhP14tEPPxpalLkpyj5tPpBPpQzqG36+HMZWVng9PDOwKBgAZALxgDwj18uJmRGpUP+CXeyohh1B++pbbupXd1HsaPDFolxWS1JcxXtq2mHi9GUdE3e2rBeEwApuPrUnadE+UTqQ0yyMScD+wJBlq0pXmc+zu2weOpVFuY6MbbVsBPMEFchJXPLE1u1GD3qXRkChEsXG21xr270G6pOMUAuqxpAoGAWxDKT7WO7Cx8H/3CuLebaZGvVwPZIseJC6llCykJYYljbuPw5Zyc4oNRQ/gPhnHeTVGTBxbVMRYOYOwvSofENLIopPdKpwMJDbXWHHlnpUv394jn3FEXijMeE2kwJIFD7mzg/b6zxK2rUb/MhhlFTPtu7cYy7YOgJTWyK+i7tJsCgYAOvZj6yJqAUDrwvCRd9plURiW3WwDXcJWU8kcCUtwnVhgje5bLlRvaQDJJ5w60qblC8dCA1x/AILIR+NrgrHGRrONHWhfz94y+T2L8VO8brZcDqB146nR7IB+nr8qZP7D4RCd7TJWXjGPUufDwPWc4VPDrJmmJO89O45FQUIOLqg==
+  app_id: 2016101600701254
+  server_url: https://openapi.alipaydev.com/gateway.do

@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+dubbo:
+  application:
+    name: sms-service
+  registry:
+    protocol: zookeeper
+    address: 123.207.253.16:2181
+  protocol:
+    port: 28814
+
+spring:
+  rabbitmq:
+    host: 123.207.253.16
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /java

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wm.mapper.ErrorEmailMapper">
+  <resultMap id="BaseResultMap" type="com.wm.entity.ErrorEmail">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="to_email" jdbcType="VARCHAR" property="toEmail" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="retry_num" jdbcType="INTEGER" property="retryNum" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, to_email, params, create_time, retry_num, type_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_error_email
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_error_email
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.wm.entity.ErrorEmail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_error_email (to_email, params, create_time, 
+      retry_num, type_id)
+    values (#{toEmail,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{retryNum,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.wm.entity.ErrorEmail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_error_email
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="toEmail != null">
+        to_email,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="retryNum != null">
+        retry_num,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="toEmail != null">
+        #{toEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retryNum != null">
+        #{retryNum,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.entity.ErrorEmail">
+    <!--@mbg.generated-->
+    update t_error_email
+    <set>
+      <if test="toEmail != null">
+        to_email = #{toEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retryNum != null">
+        retry_num = #{retryNum,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.entity.ErrorEmail">
+    <!--@mbg.generated-->
+    update t_error_email
+    set to_email = #{toEmail,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      retry_num = #{retryNum,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <insert id="addExceptionMessage">
+      INSERT INTO t_error_email
+
+      (to_email,params,create_time,retry_num,type_id)
+
+      VALUES(#{to},#{content},NOW(),0,#{typeId})
+
+        ON DUPLICATE KEY UPDATE retry_num=retry_num+1;
+    </insert>
+    <select id="getRetryList" parameterType="int" resultMap="BaseResultMap">
+      select  * from t_error_email where retry_num &lt; #{retryNum}
+    </select>
+  <delete id="deleteByToEmailType">
+    delete from t_error_email where to_email=#{to} and type_id = #{type}
+  </delete>
+</mapper>

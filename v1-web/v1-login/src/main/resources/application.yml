@@ -1,0 +1,29 @@
+server:
+  port: 9095
+
+dubbo:
+  application:
+    name: web-login
+    qos-port: 33333
+  registry:
+    protocol: zookeeper
+    address: 123.207.253.16:2181
+
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+  redis:
+    host: 123.207.253.16
+    port: 6379
+    password: weimin
+    jedis:
+      pool:
+        max-active: 66
+  rabbitmq:
+    host: 123.207.253.16
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /java

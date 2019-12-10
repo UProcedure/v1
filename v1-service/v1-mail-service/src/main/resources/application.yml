@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+dubbo:
+  application:
+    name: mail-service
+  registry:
+    protocol: zookeeper
+    address: 123.207.253.16:2181
+  protocol:
+    port: 28812
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 1667678068@qq.com
+    password: fqmcqpnoiibfbfbf
+    default-encoding: utf-8
+  rabbitmq:
+    host: 123.207.253.16
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /java
+
+
+
+mail:
+  fromAddr: 1667678068@qq.com

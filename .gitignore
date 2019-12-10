@@ -1,0 +1,11 @@
+# Project exclude paths
+/v1-api/v1-error-api/target/
+/v1-api/v1-mail-api/target/
+/v1-api/v1-product-api/target/
+/v1-api/v1-search-api/target/
+/v1-api/v1-sms-api/target/
+/v1-api/v1-user-api/target/
+/v1-basic/v1-commons/target/
+/v1-basic/v1-entity/target/
+/v1-basic/v1-mapper/target/
+/v1-demo/netty/target/
